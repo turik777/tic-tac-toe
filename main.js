@@ -1,8 +1,8 @@
 const ticTacToe = (function () {
     const gameboard = {
-        tiles: ["", "", "",
-                "", "", "",
-                "", "", ""]
+        tiles: ["X", "O", "X",
+                "X", "X", "O",
+                "O", "X", "O"]
     }
     
     const players = {
@@ -65,6 +65,20 @@ const ticTacToe = (function () {
         console.log(gameboard.tiles);
     }
 
+    const displayContent = function () {
+        const gameboardDiv = document.createElement("div");
+        gameboardDiv.classList.add("gameboard");
+        document.body.appendChild(gameboardDiv);
+
+        gameboard.tiles.forEach(tile => {
+            const gameboardTile = document.createElement("div");
+            gameboardTile.classList.add("gameboard-tile");
+            gameboardTile.textContent = tile;
+            gameboardDiv.appendChild(gameboardTile);
+        });
+    };
+
+    displayContent();
     console.log(gameboard.tiles);
     return {addMark};
 })();
