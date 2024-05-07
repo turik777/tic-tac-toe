@@ -1,14 +1,14 @@
 const ticTacToe = (function () {
     const gameboard = {
-        tiles: ["X", "O", "X",
-                "X", "X", "O",
-                "O", "X", "O"]
-    }
+        tiles: ["", "", "",
+                "", "", "",
+                "", "", ""]
+    };
     
     const players = {
         playerOne: "X",
         playerTwo: "O"
-    }
+    };
 
     const gameFlow = {
         playerTurn: "",
@@ -46,39 +46,51 @@ const ticTacToe = (function () {
                                "", "", ""];
             gameFlow.playerTurn = "";
             gameFlow.gameResult = "";
+        },
+
+        addMark: function(tile) {
+            if (gameboard.tiles[tile] || gameFlow.gameResult) return;
+    
+            if (gameFlow.playerTurn === "X") {
+                gameboard.tiles[tile] = players["playerTwo"];
+                gameFlow.playerTurn = gameboard.tiles[tile];
+            } else {
+                gameboard.tiles[tile] = players["playerOne"];
+                gameFlow.playerTurn = gameboard.tiles[tile];
+            }
+    
+            gameFlow.checkWinner();
+            if (gameFlow.gameResult) gameFlow.displayResult();
+            console.log(gameboard.tiles);
         }
-    }
-
-    const addMark = function(tile) {
-        if (gameboard.tiles[tile] || gameFlow.gameResult) return;
-
-        if (gameFlow.playerTurn === "X") {
-            gameboard.tiles[tile] = players["playerTwo"];
-            gameFlow.playerTurn = gameboard.tiles[tile];
-        } else {
-            gameboard.tiles[tile] = players["playerOne"];
-            gameFlow.playerTurn = gameboard.tiles[tile];
-        }
-
-        gameFlow.checkWinner();
-        if (gameFlow.gameResult) gameFlow.displayResult();
-        console.log(gameboard.tiles);
-    }
-
-    const displayContent = function () {
-        const gameboardDiv = document.createElement("div");
-        gameboardDiv.classList.add("gameboard");
-        document.body.appendChild(gameboardDiv);
-
-        gameboard.tiles.forEach(tile => {
-            const gameboardTile = document.createElement("div");
-            gameboardTile.classList.add("gameboard-tile");
-            gameboardTile.textContent = tile;
-            gameboardDiv.appendChild(gameboardTile);
-        });
     };
 
-    displayContent();
+    const displayDOM = {
+        displayBoard: (function () {
+            const gameboardDiv = document.createElement("div");
+            gameboardDiv.classList.add("gameboard");
+            document.body.appendChild(gameboardDiv);
+    
+            gameboard.tiles.forEach(tile => {
+                const gameboardTile = document.createElement("div");
+                gameboardTile.classList.add("gameboard-tile");
+                gameboardTile.textContent = tile;
+                gameboardDiv.appendChild(gameboardTile);
+            });
+        })(),
+
+        displayMark: (function (gameboardTile) {
+            const gameboardTiles = Array.from(document.querySelectorAll(".gameboard-tile"));
+
+            gameboardTiles.forEach(gameboardTile => {
+                gameboardTile.addEventListener("click", () => {
+                    gameFlow.addMark(gameboardTiles.indexOf(gameboardTile));
+                    gameboardTile.textContent = gameboard.tiles[gameboardTiles.indexOf(gameboardTile)];
+                })
+            });
+        })()
+    };
+
     console.log(gameboard.tiles);
-    return {addMark};
+    return {gameFlow, displayDOM};
 })();
