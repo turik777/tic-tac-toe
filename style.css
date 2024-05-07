@@ -3,3 +3,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: #000000;
+    gap: 1px;
+    margin: 2em 0;
+}
+
+.gameboard-tile {
+    padding: 2em;
+    background-color: #FFFFFF;
+}
