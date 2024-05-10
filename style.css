@@ -10,9 +10,44 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #EEEEEE;
+}
+
+.players {
+    display: flex;
+    gap: 5em;
+}
+
+.players p {
+    text-align: center;
+}
+
+input {
+    width: 10em;
+}
+
+.buttons {
+    display: flex;
+    gap: 6em;
+}
+
+button {
+    margin-top: 1em;
+    padding: 0.5em 3em;
+    box-shadow: 0 0.2em 0.5em #00000030,
+                0 0.1em 0.1em #0000003b;
+    border: none;
+    border-radius: 0.3em;
+    background-color: #FFFFFF;
+}
+
+button:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 .gameboard {
+    border-radius: 1em;
     display: grid;
     width: 20em;
     height: 20em;
@@ -21,6 +56,8 @@ body {
     background-color: #000000;
     gap: 1px;
     margin: 2em 0;
+    box-shadow: 0 0.5em 1em #00000030,
+                0 0.3em 0.3em #0000003b;
 }
 
 .gameboard-tile {
