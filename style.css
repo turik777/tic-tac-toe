@@ -5,12 +5,20 @@
 }
 
 body {
+    font-family: Helvetica, sans-serif;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #EEEEEE;
+    overflow: hidden;
+    margin-top: 2em;
+    padding-bottom: 7em;
+}
+
+h1 {
+    margin-bottom: 1em;
 }
 
 .players {
@@ -19,7 +27,17 @@ body {
 }
 
 .players p {
+    margin-bottom: 0.5em;
     text-align: center;
+    font-weight: 700;
+}
+
+.player-one p {
+    color: #0000FF;
+}
+
+.player-two p {
+    color: #FF0000;
 }
 
 input {
@@ -50,11 +68,11 @@ button:hover {
     border-radius: 1em;
     display: grid;
     width: 20em;
-    height: 20em;
+    min-height: 20em;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     background-color: #000000;
-    gap: 1px;
+    gap: 2px;
     margin: 2em 0;
     box-shadow: 0 0.5em 1em #00000030,
                 0 0.3em 0.3em #0000003b;
