@@ -99,6 +99,12 @@ const ticTacToe = (function () {
                 gameboardTile.addEventListener("click", () => {
                     gameFlow.addMark(gameboardTiles.indexOf(gameboardTile));
                     gameboardTile.textContent = gameboard.tiles[gameboardTiles.indexOf(gameboardTile)];
+
+                    if (gameFlow.playerTurn === "X") {
+                        gameboardTile.style.color = "#0000FF";
+                    } else {
+                        gameboardTile.style.color = "#FF0000";
+                    }
                 })
             });
         })(),
@@ -107,6 +113,7 @@ const ticTacToe = (function () {
             const gameInfo = document.createElement("p");
             gameInfo.classList.add("game-info");
             document.body.appendChild(gameInfo);
+            gameInfo.textContent = "Press Start to play";
         })(),
 
         updateInfo: function () {
@@ -119,7 +126,7 @@ const ticTacToe = (function () {
             } else if (gameFlow.playerTurn === "X") {
                 gameInfo.textContent = players.playerTwoName + "'s Turn";
             }
-            if (gameFlow.isGameStarted === false) gameInfo.textContent = "";
+            if (gameFlow.isGameStarted === false) gameInfo.textContent = "Press Start to play";
             if (gameFlow.gameResult) gameInfo.textContent = gameFlow.gameResult;
         },
     };
